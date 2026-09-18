@@ -1,0 +1,178 @@
+[
+  {
+    "topic_id": "T1",
+    "terms": "bosses, time, chapter, don, attack, way, bad, dodge, attacks, design, end, feel",
+    "top_terms": [
+      "bosses",
+      "time",
+      "chapter",
+      "don",
+      "attack",
+      "way",
+      "bad",
+      "dodge",
+      "attacks",
+      "design",
+      "end",
+      "feel"
+    ],
+    "assigned_reviews": 854,
+    "recommended": 531,
+    "candidate_reviews": 383,
+    "median_words": 86.0
+  },
+  {
+    "topic_id": "T2",
+    "terms": "combat, feels, action, satisfying, world, mythology, stunning, visuals, chinese mythology, chinese, challenging, incredible",
+    "top_terms": [
+      "combat",
+      "feels",
+      "action",
+      "satisfying",
+      "world",
+      "mythology",
+      "stunning",
+      "visuals",
+      "chinese mythology",
+      "chinese",
+      "challenging",
+      "incredible"
+    ],
+    "assigned_reviews": 316,
+    "recommended": 304,
+    "candidate_reviews": 213,
+    "median_words": 72.5
+  },
+  {
+    "topic_id": "T3",
+    "terms": "elden, ring, elden ring, open world, ive, open, greatest, ring dark, world, tho, sekiro, better",
+    "top_terms": [
+      "elden",
+      "ring",
+      "elden ring",
+      "open world",
+      "ive",
+      "open",
+      "greatest",
+      "ring dark",
+      "world",
+      "tho",
+      "sekiro",
+      "better"
+    ],
+    "assigned_reviews": 106,
+    "recommended": 84,
+    "candidate_reviews": 48,
+    "median_words": 67.0
+  },
+  {
+    "topic_id": "T4",
+    "terms": "graphics, fun, story, gameplay, worth, hard, recommend, pc, price, beautiful, time, easy",
+    "top_terms": [
+      "graphics",
+      "fun",
+      "story",
+      "gameplay",
+      "worth",
+      "hard",
+      "recommend",
+      "pc",
+      "price",
+      "beautiful",
+      "time",
+      "easy"
+    ],
+    "assigned_reviews": 431,
+    "recommended": 387,
+    "candidate_reviews": 206,
+    "median_words": 37.0
+  },
+  {
+    "topic_id": "T5",
+    "terms": "boss, fights, boss fights, fight, boss fight, final, final boss, beat, fight boss, boss boss, boss rush, rush",
+    "top_terms": [
+      "boss",
+      "fights",
+      "boss fights",
+      "fight",
+      "boss fight",
+      "final",
+      "final boss",
+      "beat",
+      "fight boss",
+      "boss boss",
+      "boss rush",
+      "rush"
+    ],
+    "assigned_reviews": 243,
+    "recommended": 171,
+    "candidate_reviews": 92,
+    "median_words": 52.0
+  },
+  {
+    "topic_id": "T6",
+    "terms": "journey, west, journey west, story, monkey, read, chinese, sun, love, know, fan, west story",
+    "top_terms": [
+      "journey",
+      "west",
+      "journey west",
+      "story",
+      "monkey",
+      "read",
+      "chinese",
+      "sun",
+      "love",
+      "know",
+      "fan",
+      "west story"
+    ],
+    "assigned_reviews": 165,
+    "recommended": 159,
+    "candidate_reviews": 117,
+    "median_words": 79.0
+  },
+  {
+    "topic_id": "T7",
+    "terms": "souls, god, god war, war, dark souls, dark, war souls, mix, mix god, far, likes, 2018",
+    "top_terms": [
+      "souls",
+      "god",
+      "god war",
+      "war",
+      "dark souls",
+      "dark",
+      "war souls",
+      "mix",
+      "mix god",
+      "far",
+      "likes",
+      "2018"
+    ],
+    "assigned_reviews": 176,
+    "recommended": 152,
+    "candidate_reviews": 65,
+    "median_words": 45.0
+  },
+  {
+    "topic_id": "T8",
+    "terms": "10, 10 10, 10 story, story 10, story, graphics 10, graphics, gameplay 10, monke, overall 10, 10 gameplay, music 10",
+    "top_terms": [
+      "10",
+      "10 10",
+      "10 story",
+      "story 10",
+      "story",
+      "graphics 10",
+      "graphics",
+      "gameplay 10",
+      "monke",
+      "overall 10",
+      "10 gameplay",
+      "music 10"
+    ],
+    "assigned_reviews": 198,
+    "recommended": 192,
+    "candidate_reviews": 97,
+    "median_words": 44.0
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "data/evidence.csv": "8cb2547e70f1e68bd2e9d617041323f19532ab217e1cacdd8b38ecc350735533",
+  "data/model/metadata.json": "cdf1ea47154966a82c41e4221633673535343da8b5e00f19edede711617416f4",
+  "data/model/review_ids.csv": "66f2e1953b694696cf9a29c71d9ac84b91961f3b09f567cc89b795e7f9f300a3",
+  "data/model/tfidf.npz": "f7f913b355b97a8e34ca8cbcc560e3a04bfa488a787d808545a68e07371861cb",
+  "data/model/topic_names.json": "e9e690d68ab31048198797a37066cc253deac87e8c9abc6eeb29d8dfec058729",
+  "data/model/topic_reference.json": "de27a09bf4f9dc0e999c70f10b7861bb2bee7bf5fb25fc74b2657bb2a5e74d22",
+  "data/model/vocabulary.json": "9b48e940a1eabd153ce789f8e47f9cf792aa32ef586b48ee05de51fbdcc2ef88",
+  "data/pilot_evaluation.json": "a73143cc7ab065be6a348177660824ca874807ece6cc7651c3af8a6cf1b07fa9",
+  "data/provenance.json": "2ac19fb1315062182365c1cb8fac29f9c1307c32f0f912f58d3fcce033970c96",
+  "data/review_features.csv": "8a79cdaf2a49edb7d4c7b0dba12004ba723555d051b5040ac71b2c3cc9d61308"
+}

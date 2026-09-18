@@ -1,0 +1,186 @@
+{
+  "method": "TF-IDF + NMF",
+  "components": 8,
+  "random_state": 42,
+  "initialization": "random",
+  "sklearn_version": "1.7.2",
+  "eligible_reviews": 2509,
+  "fitted_unique_texts": 2489,
+  "below_minimum": 5669,
+  "script_excluded": 22,
+  "insufficient_vocabulary": 20,
+  "vocabulary_size": 7651,
+  "min_words": 20,
+  "min_distinct_features": 5,
+  "min_ascii_letter_share": 0.8,
+  "unchecked_options_removed": true,
+  "fit_deduplicated": true,
+  "stop_words_added": [
+    "amazing",
+    "awesome",
+    "best",
+    "black",
+    "game",
+    "games",
+    "good",
+    "great",
+    "just",
+    "like",
+    "myth",
+    "play",
+    "played",
+    "playing",
+    "really",
+    "wukong"
+  ],
+  "vectorizer": {
+    "min_df": 3,
+    "max_df": 0.85,
+    "max_features": 12000,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true
+  },
+  "warnings": [],
+  "iterations": 123,
+  "stability": [
+    {
+      "seed": 7,
+      "matched_cosine_mean": 0.9999999958479937,
+      "matched_cosine_min": 0.9999999874380323,
+      "adjusted_rand_index": 1.0,
+      "iterations": 84,
+      "warnings": [],
+      "matched_topics": [
+        {
+          "topic_id": "T1",
+          "cosine": 0.9999999959140521
+        },
+        {
+          "topic_id": "T2",
+          "cosine": 0.9999999963084014
+        },
+        {
+          "topic_id": "T3",
+          "cosine": 0.9999999997168629
+        },
+        {
+          "topic_id": "T4",
+          "cosine": 0.9999999900990999
+        },
+        {
+          "topic_id": "T5",
+          "cosine": 0.9999999874380323
+        },
+        {
+          "topic_id": "T6",
+          "cosine": 0.9999999993713429
+        },
+        {
+          "topic_id": "T7",
+          "cosine": 0.9999999986971301
+        },
+        {
+          "topic_id": "T8",
+          "cosine": 0.9999999992390274
+        }
+      ]
+    },
+    {
+      "seed": 19,
+      "matched_cosine_mean": 0.8555984100784235,
+      "matched_cosine_min": 0.07118069203539541,
+      "adjusted_rand_index": 0.7141608894921707,
+      "iterations": 168,
+      "warnings": [],
+      "matched_topics": [
+        {
+          "topic_id": "T1",
+          "cosine": 0.9940069657106803
+        },
+        {
+          "topic_id": "T2",
+          "cosine": 0.9255840989900593
+        },
+        {
+          "topic_id": "T3",
+          "cosine": 0.9991011025906948
+        },
+        {
+          "topic_id": "T4",
+          "cosine": 0.8631879829632292
+        },
+        {
+          "topic_id": "T5",
+          "cosine": 0.9949961987125842
+        },
+        {
+          "topic_id": "T6",
+          "cosine": 0.07118069203539541
+        },
+        {
+          "topic_id": "T7",
+          "cosine": 0.9971399301253882
+        },
+        {
+          "topic_id": "T8",
+          "cosine": 0.9995903094993571
+        }
+      ]
+    }
+  ],
+  "sensitivity": [
+    {
+      "components": 6,
+      "relative_reconstruction_error": 0.9778506887117938,
+      "iterations": 95,
+      "warnings": [],
+      "top_terms": [
+        "bosses, boss, chapter, fight, time, don, attack, way",
+        "fun, story, graphics, gameplay, worth, hard, recommend, pc",
+        "souls, ring, elden, elden ring, god war, war, god, dark",
+        "10, 10 10, 10 story, story 10, story, graphics, graphics 10, gameplay 10",
+        "combat, fights, feels, action, boss fights, satisfying, boss, world",
+        "journey, west, journey west, story, monkey, chinese, love, read"
+      ]
+    },
+    {
+      "components": 8,
+      "relative_reconstruction_error": 0.9747603258893739,
+      "iterations": 123,
+      "warnings": [],
+      "top_terms": [
+        "bosses, time, chapter, don, attack, way, bad, dodge",
+        "combat, feels, action, satisfying, world, mythology, stunning, visuals",
+        "elden, ring, elden ring, open world, ive, open, greatest, ring dark",
+        "graphics, fun, story, gameplay, worth, hard, recommend, pc",
+        "boss, fights, boss fights, fight, boss fight, final, final boss, beat",
+        "journey, west, journey west, story, monkey, read, chinese, sun",
+        "souls, god, god war, war, dark souls, dark, war souls, mix",
+        "10, 10 10, 10 story, story 10, story, graphics 10, graphics, gameplay 10"
+      ]
+    },
+    {
+      "components": 10,
+      "relative_reconstruction_error": 0.972070888625607,
+      "iterations": 117,
+      "warnings": [],
+      "top_terms": [
+        "bosses, design, attack, combat, level, chapter, bad, dodge",
+        "combat, action, feels, satisfying, mythology, world, stunning, visuals",
+        "elden, ring, elden ring, open world, open, ive, world, tho",
+        "fun, hard, recommend, bosses, challenging, highly, highly recommend, far",
+        "boss, fights, boss fights, fight, boss fight, final, final boss, fight boss",
+        "graphics, gameplay, story, worth, price, story gameplay, pc, worth price",
+        "souls, god, god war, war, dark souls, dark, war souls, mix",
+        "10, 10 10, 10 story, story 10, graphics 10, gameplay 10, monke, story",
+        "time, hours, got, want, ve, say, don, beat",
+        "journey, west, journey west, story, monkey, read, sun, chinese"
+      ]
+    }
+  ],
+  "purpose": "Exploratory vocabulary navigation; no trained sentiment classifier, no accuracy claim.",
+  "component_choice": "Eight components chosen for readable navigation, not an optimized or objectively true number of topics."
+}

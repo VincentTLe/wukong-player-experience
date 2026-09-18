@@ -1,0 +1,34 @@
+{
+  "T1": {
+    "label": "Combat, progression & friction",
+    "interpretation": "Broad, mixed vocabulary about bosses, chapters, controls, and time; not a single complaint category."
+  },
+  "T2": {
+    "label": "Combat feel & mythic spectacle",
+    "interpretation": "Descriptive writing about action, visuals, mythology, and satisfying combat."
+  },
+  "T3": {
+    "label": "Elden Ring comparisons",
+    "interpretation": "Comparisons with another game; neither endorsement nor dissatisfaction is implied by assignment."
+  },
+  "T4": {
+    "label": "General experience & value",
+    "interpretation": "Mixed vocabulary about graphics, story, fun, price, and recommendation."
+  },
+  "T5": {
+    "label": "Boss encounters",
+    "interpretation": "Boss-fight discussion includes both praise and criticism."
+  },
+  "T6": {
+    "label": "Journey to the West & fandom",
+    "interpretation": "Narrative familiarity and curiosity; this component is unstable under one alternative initialization."
+  },
+  "T7": {
+    "label": "Souls / God of War comparisons",
+    "interpretation": "Genre and game comparisons rather than a verified experience category."
+  },
+  "T8": {
+    "label": "Numeric rating language",
+    "interpretation": "Review format drives this component. Do not interpret it as a design theme."
+  }
+}

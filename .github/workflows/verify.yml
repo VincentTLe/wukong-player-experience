@@ -1,0 +1,28 @@
+name: Reproduce analysis
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s tests -v
+      - run: python scripts/run_notebook.py
+      - name: Save executed outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: executed-notebook
+          path: |
+            notebooks/wukong_player_experience.ipynb
+            reports/wukong_player_experience.html
+            reports/figures/*.png

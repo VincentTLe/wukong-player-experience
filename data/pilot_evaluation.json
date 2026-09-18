@@ -1,0 +1,36 @@
+{
+  "annotation_source": "assistant",
+  "independent_human_validation": false,
+  "sample_size": 40,
+  "matching_sample": 20,
+  "nonmatching_sample": 20,
+  "true_positives": 16,
+  "false_positives": 2,
+  "unclear_matching": 2,
+  "false_negatives": 3,
+  "true_negatives": 17,
+  "precision_resolved": 0.8888888888888888,
+  "precision_resolved_wilson95": [
+    0.672002348698212,
+    0.9689804773543876
+  ],
+  "precision_all20_sensitivity": [
+    0.8,
+    0.9
+  ],
+  "missed_relevance_rate": 0.15,
+  "missed_rate_wilson95": [
+    0.052368745896216595,
+    0.36041886474075696
+  ],
+  "matching_population": 390,
+  "nonmatching_population": 1846,
+  "frame_size": 2236,
+  "excluded_discovery_reviews": 50,
+  "recall_weighted_sensitivity": [
+    0.5298013245033113,
+    0.5590062111801243
+  ],
+  "rule_sha256": "bd410337a0933ab67b33a105ff93f82f98c7aca31eb64518575f5701c93f4a87",
+  "annotation_sha256": "d7e2ca1913b298496d9b1dbad88a8b359c7de4619a08b3b99d93479f5ff58826"
+}
