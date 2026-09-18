@@ -540,10 +540,5 @@ plt.show()
 # - [Research brief](../docs/research_brief.md): findings and proposed next studies.
 # - [Provenance](../data/provenance.json): collection window, API parameters, reconciliation, and source hashes.
 #
-# **AI assistance:** code, analysis, prose, and annotations were developed with AI assistance.
-# The review labels are assistant judgments. There is no claim of independent human
-# validation. Short review quotations remain attributable to their original authors;
-# this project is independent of Valve and the game's developer.
-#
 # **The question to carry forward:** what does a player understand, enjoy, and feel at
 # a specific moment—and how is that different from whether they recommend the game?
