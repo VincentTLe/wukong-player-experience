@@ -1,5 +1,7 @@
 # Beyond the Thumbs-Up
 
+[![Reproduce analysis](https://github.com/VincentTLe/wukong-player-experience/actions/workflows/verify.yml/badge.svg)](https://github.com/VincentTLe/wukong-player-experience/actions/workflows/verify.yml)
+
 **What can 8,200 Steam reviews tell us about Black Myth: Wukong's story and world?**
 
 A player can enjoy a story without understanding all of it. Another can praise the storytelling and still reject the game. This project uses player reviews to find those contrasts—and turn them into questions a game research team could investigate.

@@ -89,15 +89,26 @@ from wukong_research.analysis import load_reviews, match_rates, verify_data
 
 verified_files = verify_data(ROOT)
 reviews = load_reviews(ROOT)
-evidence = pd.read_csv(ROOT / 'data/evidence.csv', dtype={'review_id': str}, keep_default_na=False)
+evidence = pd.read_csv(
+    ROOT / 'data/evidence.csv', dtype={'review_id': str}, keep_default_na=False
+)
 provenance = json.loads((ROOT / 'data/provenance.json').read_text(encoding='utf-8'))
 
 FIGURES = ROOT / 'reports/figures'
 FIGURES.mkdir(parents=True, exist_ok=True)
 COLORS = {'Not recommended': '#b9572c', 'Recommended': '#087f83'}
-plt.rcParams.update({'figure.dpi': 120, 'font.size': 11, 'axes.spines.top': False,
-                     'axes.spines.right': False, 'axes.titleweight': 'bold', 'savefig.facecolor': 'white'})
-print(f'Loaded {len(reviews):,} review records; verified {verified_files} prepared input files.')
+plt.rcParams.update({
+    'figure.dpi': 120,
+    'font.size': 11,
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+    'axes.titleweight': 'bold',
+    'savefig.facecolor': 'white',
+})
+print(
+    f'Loaded {len(reviews):,} review records; '
+    f'verified {verified_files} prepared input files.'
+)
 
 # %%
 def show_review(reading_id, interpretation):
@@ -116,10 +127,17 @@ assert reviews.review_id.is_unique
 assert reviews.created_utc.ge(start).all() and reviews.created_utc.lt(end).all()
 
 context = pd.DataFrame({
-    'Measure': ['Review IDs', 'Recommended', 'Not recommended', 'Recommendation rate', 'Keyword matches'],
-    'Result': [f'{len(reviews):,}', f'{reviews.recommended.sum():,}',
-               f'{(~reviews.recommended).sum():,}', f'{reviews.recommended.mean():.1%}',
-               f'{reviews.keyword_match.sum():,} ({reviews.keyword_match.mean():.1%})']
+    'Measure': [
+        'Review IDs', 'Recommended', 'Not recommended',
+        'Recommendation rate', 'Keyword matches',
+    ],
+    'Result': [
+        f'{len(reviews):,}',
+        f'{reviews.recommended.sum():,}',
+        f'{(~reviews.recommended).sum():,}',
+        f'{reviews.recommended.mean():.1%}',
+        f'{reviews.keyword_match.sum():,} ({reviews.keyword_match.mean():.1%})',
+    ],
 })
 display(context.set_index('Measure'))
 
@@ -158,8 +176,11 @@ display(context.set_index('Measure'))
 # %%
 # Each rate uses its own recommendation group's review count as the denominator.
 overall = match_rates(reviews, 'recommendation')
-display(overall.rename(columns={'reviews': 'Reviews', 'matches': 'Matches', 'match_rate': 'Match rate'})
-        .style.format({'Match rate': '{:.1%}'}))
+display(
+    overall.rename(columns={
+        'reviews': 'Reviews', 'matches': 'Matches', 'match_rate': 'Match rate',
+    }).style.format({'Match rate': '{:.1%}'})
+)
 
 # %% [markdown]
 # At first glance, non-recommending reviews appear more likely to discuss our area of
@@ -177,14 +198,23 @@ length_mix = length_counts.div(length_counts.sum(axis=0), axis=1)
 
 fig, ax = plt.subplots(figsize=(10, 4.5))
 for offset, group in [(-0.18, 'Not recommended'), (0.18, 'Recommended')]:
-    ax.barh(np.arange(4) + offset, length_mix[group], height=0.32, label=group, color=COLORS[group])
-ax.set(yticks=np.arange(4), yticklabels=length_counts.index, xlim=(0, 0.85),
-       xlabel='Share of reviews within each recommendation group',
-       title='Recommending reviews are much more often very short')
+    ax.barh(
+        np.arange(4) + offset, length_mix[group],
+        height=0.32, label=group, color=COLORS[group],
+    )
+ax.set(
+    yticks=np.arange(4), yticklabels=length_counts.index, xlim=(0, 0.85),
+    xlabel='Share of reviews within each recommendation group',
+    title='Recommending reviews are much more often very short',
+)
 ax.invert_yaxis()
 ax.xaxis.set_major_formatter(PercentFormatter(1))
 ax.legend(loc='lower right', frameon=False)
-fig.text(0.01, 0.01, 'Source: Steam snapshot · All 8,200 review IDs · Length after basic cleaning', fontsize=9, color='#536273')
+fig.text(
+    0.01, 0.01,
+    'Source: Steam snapshot · All 8,200 review IDs · Length after basic cleaning',
+    fontsize=9, color='#536273',
+)
 fig.tight_layout(rect=(0, 0.04, 1, 1))
 fig.savefig(FIGURES / 'rating_context.png', dpi=160)
 plt.show()
@@ -193,31 +223,63 @@ plt.show()
 # Now compare like-sized reviews. The numerator is matches; the denominator is all reviews in that cell.
 by_length = match_rates(reviews, ['length_band', 'recommendation'])
 rates = by_length.match_rate.unstack('recommendation')
-display(by_length.rename(columns={'reviews': 'Reviews', 'matches': 'Matches', 'match_rate': 'Match rate'})
-        .style.format({'Match rate': '{:.1%}'}))
+display(
+    by_length.rename(columns={
+        'reviews': 'Reviews', 'matches': 'Matches', 'match_rate': 'Match rate',
+    }).style.format({'Match rate': '{:.1%}'})
+)
 
 # %%
 fig, axes = plt.subplots(1, 2, figsize=(12, 5.2), gridspec_kw={'width_ratios': [1, 2.4]})
-fig.suptitle('Review length reverses the keyword comparison', x=0.04, ha='left', fontsize=17, fontweight='bold')
+fig.suptitle(
+    'Review length reverses the keyword comparison',
+    x=0.04, ha='left', fontsize=17, fontweight='bold',
+)
 
 # The same colors and 0–100% scale make the two panels directly comparable.
 for group, marker in [('Not recommended', 'o'), ('Recommended', 's')]:
-    axes[0].scatter(overall.loc[group, 'match_rate'], 0, color=COLORS[group], marker=marker, s=80)
-    axes[1].scatter(rates[group], np.arange(4), color=COLORS[group], marker=marker, label=group, s=55)
+    axes[0].scatter(
+        overall.loc[group, 'match_rate'], 0, color=COLORS[group], marker=marker, s=80,
+    )
+    axes[1].scatter(
+        rates[group], np.arange(4), color=COLORS[group], marker=marker, label=group, s=55,
+    )
     for row, value in enumerate(rates[group]):
         shift = -0.13 if group == 'Not recommended' else 0.20
-        axes[1].text(value + 0.025, row + shift, f'{value:.1%}', color=COLORS[group], fontsize=10)
-axes[0].text(0.03, 0.24, f"Not recommended: {overall.loc['Not recommended', 'match_rate']:.1%}", color=COLORS['Not recommended'], fontsize=10)
-axes[0].text(0.03, -0.26, f"Recommended: {overall.loc['Recommended', 'match_rate']:.1%}", color=COLORS['Recommended'], fontsize=10)
+        axes[1].text(
+            value + 0.025, row + shift, f'{value:.1%}', color=COLORS[group], fontsize=10,
+        )
+axes[0].text(
+    0.03, 0.24,
+    f"Not recommended: {overall.loc['Not recommended', 'match_rate']:.1%}",
+    color=COLORS['Not recommended'], fontsize=10,
+)
+axes[0].text(
+    0.03, -0.26,
+    f"Recommended: {overall.loc['Recommended', 'match_rate']:.1%}",
+    color=COLORS['Recommended'], fontsize=10,
+)
 axes[0].set(title='All reviews together', yticks=[], ylim=(-0.7, 0.7))
-axes[1].set(title='Within each length band', yticks=np.arange(4), yticklabels=rates.index, ylim=(3.6, -0.6))
+axes[1].set(
+    title='Within each length band', yticks=np.arange(4),
+    yticklabels=rates.index, ylim=(3.6, -0.6),
+)
 for axis in axes:
     axis.set(xlim=(0, 1), xlabel='Keyword match rate')
     axis.xaxis.set_major_formatter(PercentFormatter(1))
     axis.grid(axis='x', alpha=0.15)
 axes[1].legend(loc='lower right', bbox_to_anchor=(1, -0.32), ncol=2, frameon=False)
-fig.text(0.04, 0.025, 'Steam snapshot · 8,200 reviews · Any story / world / emotion keyword · Denominator: all reviews in each group', fontsize=9, color='#536273')
-fig.text(0.04, 0.065, 'Matches are not complaints. Overall groups: 792 not recommended; 7,408 recommended.', fontsize=9, color='#536273')
+fig.text(
+    0.04, 0.025,
+    'Steam snapshot · 8,200 reviews · Any story / world / emotion keyword · '
+    'Denominator: all reviews in each group',
+    fontsize=9, color='#536273',
+)
+fig.text(
+    0.04, 0.065,
+    'Matches are not complaints. Overall groups: 792 not recommended; 7,408 recommended.',
+    fontsize=9, color='#536273',
+)
 fig.tight_layout(rect=(0, 0.12, 1, 0.96), w_pad=2.8)
 fig.savefig(FIGURES / 'length_reversal.png', dpi=160)
 plt.show()
@@ -261,8 +323,18 @@ display(comparison.style.format('{:.1%}'))
 # Short excerpts and source links are preserved in [the evidence table](../data/evidence.csv).
 
 # %%
-show_review('H04', 'The reviewer appreciates cinematics but reports missing context when a new chapter starts. A useful question is whether players understand where they are and why the story has moved there.')
-show_review('H23', 'This recommending reviewer describes invisible boundaries interrupting immersion. We should investigate particular exploration moments, rather than assume the whole world design is disliked.')
+show_review(
+    'H04',
+    'The reviewer appreciates cinematics but reports missing context when a new chapter '
+    'starts. A useful question is whether players understand where they are and why '
+    'the story has moved there.',
+)
+show_review(
+    'H23',
+    'This recommending reviewer describes invisible boundaries interrupting immersion. '
+    'We should investigate particular exploration moments, rather than assume the '
+    'whole world design is disliked.',
+)
 
 # %% [markdown]
 # These comments suggest separate questions for narrative and level-design research.
@@ -335,7 +407,9 @@ from threadpoolctl import threadpool_limits
 from wukong_research.analysis import scale_adjusted_weights
 
 matrix = load_npz(ROOT / 'data/model/tfidf.npz')
-vocabulary = np.array(json.loads((ROOT / 'data/model/vocabulary.json').read_text(encoding='utf-8')))
+vocabulary = np.array(json.loads(
+    (ROOT / 'data/model/vocabulary.json').read_text(encoding='utf-8')
+))
 model_rows = pd.read_csv(ROOT / 'data/model/review_ids.csv', dtype=str)
 topic_names = json.loads((ROOT / 'data/model/topic_names.json').read_text(encoding='utf-8'))
 metadata = json.loads((ROOT / 'data/model/metadata.json').read_text(encoding='utf-8'))
@@ -354,10 +428,15 @@ topic_table = []
 for index, component in enumerate(model.components_):
     topic_id = f'T{index + 1}'
     terms = ', '.join(vocabulary[component.argsort()[-8:][::-1]])
-    topic_table.append({'Group': topic_id, 'Working name': topic_names[topic_id]['label'],
-                        'Texts assigned': int((dominant == index).sum()), 'Top terms': terms})
+    topic_table.append({
+        'Group': topic_id,
+        'Working name': topic_names[topic_id]['label'],
+        'Texts assigned': int((dominant == index).sum()),
+        'Top terms': terms,
+    })
 topics = pd.DataFrame(topic_table).set_index('Group')
-display(topics)
+with pd.option_context('display.max_colwidth', None):
+    display(topics)
 
 # %%
 fig, ax = plt.subplots(figsize=(11, 5.5))
@@ -366,9 +445,17 @@ ax.barh(labels, topics['Texts assigned'], color='#527e96')
 for row, count in enumerate(topics['Texts assigned']):
     ax.text(count + 12, row, str(count), va='center', fontsize=10)
 ax.invert_yaxis()
-ax.set(xlim=(0, topics['Texts assigned'].max() * 1.15), xlabel='Texts assigned by their largest adjusted model weight',
-       title='Vocabulary groups help navigate reviews; they do not count complaints')
-fig.text(0.02, 0.01, 'NMF refit · 2,489 modeled texts only · Names are interpretations · T8 mainly captures review format', fontsize=9, color='#536273')
+ax.set(
+    xlim=(0, topics['Texts assigned'].max() * 1.15),
+    xlabel='Texts assigned by their largest adjusted model weight',
+    title='Vocabulary groups help navigate reviews; they do not count complaints',
+)
+fig.text(
+    0.02, 0.01,
+    'NMF refit · 2,489 modeled texts only · Names are interpretations · '
+    'T8 mainly captures review format',
+    fontsize=9, color='#536273',
+)
 fig.tight_layout(rect=(0, 0.04, 1, 1))
 fig.savefig(FIGURES / 'topic_map.png', dpi=160)
 plt.show()
@@ -389,7 +476,10 @@ plt.show()
 
 # %%
 relative_error = model.reconstruction_err_ / np.linalg.norm(matrix.data)
-print(f'Primary model: {model.n_iter_} iterations; relative reconstruction error = {relative_error:.4f}.')
+print(
+    f'Primary model: {model.n_iter_} iterations; '
+    f'relative reconstruction error = {relative_error:.4f}.'
+)
 
 # These are frozen diagnostics from the original saved run, not newly computed seed checks.
 # Refit every comparison with: python scripts/check_model_stability.py
@@ -400,13 +490,27 @@ stability = pd.DataFrame([
 stability_plot = stability.pivot(index='Topic', columns='Seed', values='Similarity')
 fig, ax = plt.subplots(figsize=(10, 4.3))
 for seed, marker in [(7, 'o'), (19, 's')]:
-    ax.scatter(stability_plot.index, stability_plot[seed], marker=marker, label=f'Seed {seed}', s=55)
-ax.set(ylim=(-0.04, 1.1), ylabel='Matched vocabulary similarity', xlabel='Group in the primary model',
-       title='The fandom vocabulary group is unstable under one alternative seed')
-ax.annotate('T6: Journey to the West / fandom\nSimilarity ≈ 0.071 with seed 19', xy=(5, 0.071),
-            xytext=(2, 0.32), arrowprops={'arrowstyle': '->', 'color': '#536273'}, fontsize=10)
+    ax.scatter(
+        stability_plot.index, stability_plot[seed],
+        marker=marker, label=f'Seed {seed}', s=55,
+    )
+ax.set(
+    ylim=(-0.04, 1.1), ylabel='Matched vocabulary similarity',
+    xlabel='Group in the primary model',
+    title='The fandom vocabulary group is unstable under one alternative seed',
+)
+ax.annotate(
+    'T6: Journey to the West / fandom\nSimilarity ≈ 0.071 with seed 19',
+    xy=(5, 0.071), xytext=(2, 0.32),
+    arrowprops={'arrowstyle': '->', 'color': '#536273'}, fontsize=10,
+)
 ax.legend(frameon=False, loc='lower left')
-fig.text(0.01, 0.01, 'Frozen source-run diagnostics · Similarity measures stability, not whether the interpretation is correct', fontsize=9, color='#536273')
+fig.text(
+    0.01, 0.01,
+    'Frozen source-run diagnostics · Similarity measures stability, '
+    'not whether the interpretation is correct',
+    fontsize=9, color='#536273',
+)
 fig.tight_layout(rect=(0, 0.05, 1, 1))
 fig.savefig(FIGURES / 'topic_stability.png', dpi=160)
 plt.show()
